@@ -117,7 +117,7 @@ for product in link_df.Links:
     print(count)
     
 comm = pd.concat(dfs).reset_index().iloc[:, 1:]
-comm.columns = ['Product_ID', 'Title', 'Comment', 'Date', 'Extra', 'Gender', 'Age', 'Skin_Tone', 
-               'Skin_Type', 'Rating']
+comm.columns = ['Product_ID', 'Title', 'Comment', 'Date', 'Extra', 'Gender',
+                'Age', 'Skin_Tone', 'Skin_Type', 'Rating']
 
 comm.to_csv('Sunscreen_Comments.csv')
