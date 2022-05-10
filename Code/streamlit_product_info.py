@@ -19,5 +19,3 @@ hist_values = np.histogram(
     prices, bins=20, range=(0,120))[0]
 
 st.bar_chart(hist_values)
-
-st.dataframe(df)
