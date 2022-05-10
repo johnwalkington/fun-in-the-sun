@@ -1,0 +1,8 @@
+requests
+pandas
+numpy
+nltk
+textblob
+langdetect
+selenium
+bs4
