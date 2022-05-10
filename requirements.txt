@@ -6,3 +6,4 @@ textblob
 langdetect
 selenium
 bs4
+streamlit
