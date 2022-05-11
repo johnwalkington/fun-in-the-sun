@@ -1,1 +1,38 @@
 # fun-in-the-sun
+
+#Goal of analysis
+Sunscreens manufactured for the American market are substantially lacking in both appeal and protection. Because of the strict regulations the FDA places on sunscreen filters (the active ingredients in sunscreens), the United States has a limited offerings in terms of sun protection. Many of these approved ingredients cannot obtain the level of protection offered by foreign sunscreens. In fact, a study conducted Environmental Working Group of 446 American sunscreens found that close to two-thirds of them would fail to meet European Union standards for adaquate UVA protection. 
+
+Sunscreens on the Korean and Japanese market are noted for both their high protection and their cosmetic elegance, attracting skincare fanatics around the world. Because of the difficulty associated with importing these sunscreens, many companies have been created just to cater to individuals wishing to have a reliable way to obtain Japanese and Korean skincare. This project focuses on the Hong Kong-based 🇭🇰 yestyle.com. 
+
+As a group that regularly uses foreign sunscreens, we were interested in investigating this site for a number of reasons: 
+
+1. Scraping sunscreen ingredients.
+    -We wanted to do a simple statistical analysis of the filters lsited in the best selling sunscreens on yesstyle.com. 
+    -This gives us answers to a couple of questions: What sunscreen filters are attracting foreign consumers? What are the most popular
+    filters used in Korean and Japanese formulas? 
+
+2. Scraping customer reviews.
+    -YesStyle has a robust review system, with some products getting thousands of reviews; even allowing users to list their age and 
+    skin-type (Dry, Oily, Combination). We wanted to scrape these reviews to gain insight on common complaints and praises used by the
+    skincare community. We wanted to assess the frequency of such phrases like: "drying", "moisturizing", "emollient", etc. 
+    -Scraping reviews has another purpose for this project as well. We used the text of the scraped reviews to conduct a sentiment analysis.
+    (Need to fill in this section more).
+
+This project gives us a harder challenge than our midterm project, not only in terms of webscraping, but also in terms of our statistical analysis. We're interested consumer behavior and sentiments, looking at a niche and picky market segment that heavily relies on the opinions of fellow skincare enthusiasts to make purchasing decisions. 
+
+
+#Methodology
+data collection methods - documentation of data (all relevant columns/features) & what isn't in data
+
+#Description of project and findings/lack of findings:
+clearly documented
+supported by analysis
+
+#Limitations of analysis
+
+#Extensions of analysis/areas for more research
+what would be required to improve the analysis?
+
+#Sources of datasets
+
