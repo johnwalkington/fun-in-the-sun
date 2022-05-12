@@ -32,7 +32,6 @@ keys = ingredient_dict.keys()
 
 row_ingredient_list = []
 
-
 for i in range(len(filter_ingredients)):
     row = filter_ingredients[i]
     minilist = row.upper().split(",")
