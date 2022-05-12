@@ -165,6 +165,4 @@ outpath=os.path.join('Data','Skin_wreviews_cleaned.csv')
 df.to_csv(outpath)
 
 
-# drop_values = 'un|uno|una|e|piel|que|den|sie|peau|er|solar|este|se|el|la|le|es|est|solaire|crema|auf|bon|cara|ist|ich|en'
-
 
