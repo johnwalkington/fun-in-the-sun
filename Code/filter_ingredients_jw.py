@@ -40,8 +40,8 @@ for i in range(len(filter_ingredients)):
         if minilist[i].strip() in keys:
             minilist[i] = ingredient_dict[minilist[i].strip()]
         else:
-            minilist[i] = minilist[i]
-    row_ingredient_list += [minilist]
+            minilist[i] = None
+    row_ingredient_list += [list(filter(None, minilist))]
 
 df['Filtered_Ingredients'] = row_ingredient_list
 
