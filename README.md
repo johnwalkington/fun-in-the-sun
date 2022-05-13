@@ -86,13 +86,13 @@ Additionally, if we had more complete data on product sales, we could have mined
 
 ## Source of datasets
 We scraped the top rated sunscreens from [yesstyle.com](yesstyle.com), including product information and customer reviews.
-1. Run
-2. Run
-3. Run
-4. Run
-5. Run
-6. Run
-7. Run
+1. Run comment_scraper.py
+2. Run get_comments.py
+3. Run skin_wreviews.py
+4. Run skin_analysis.py
+5. Run comment_w_rating.py
+6. Run Skin_plot_and_nltk_regroup.ipynb
+7. Run Type_and_ingredient.ipynb
 
 ## Reproducibility
 In order to rerun the analysis, you will need to install the requirements which contains all the necessary packages, and then run the files in a certain order.
@@ -105,12 +105,14 @@ These first two scripts are used to scrape the initial data from YesStyle for pr
 1. Run comment_scraper.py
 2. Run get_comments.py
 
-These scripts are meant to clean the reviews and ingredients for product listings and create our plots
+1. Run comment_scraper.py
+2. Run get_comments.py
 3. Run skin_wreviews.py
 4. Run skin_analysis.py
 5. Run comment_w_rating.py
 6. Run Skin_plot_and_nltk_regroup.ipynb
 7. Run Type_and_ingredient.ipynb
+These scripts are meant to clean the reviews and ingredients for product listings and create our plots
 
 8. Run the ingredients code
 
