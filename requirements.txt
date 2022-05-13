@@ -6,4 +6,13 @@ textblob
 langdetect
 selenium
 bs4
-streamlit
+seaborn
+matplotlib
+sklearn
+csv
+collections
+wordcloud
+time
+dotenv
+sqlalchemy
+database
