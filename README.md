@@ -30,7 +30,9 @@ This project gives us a harder challenge than our midterm project, not only in t
 Like our midterm project, we used Beautiful Soup, ChromeDriver, Hidden API's and Selinium to scrape product pages of sunscreens on Yes Style. In terms of product information, we focused mostly on ingredients, also collecting data (where available) on product origin, price etc.
 
 Our main scraping goal here was collecting the community reviews that customers leave. We quickly were able to scrape the text content of the reviews, but Yes Style also allows customers to include hard-coded options for skin type, skin tone, age, and country of origin. Where reviewers indicated these options, we attempted to scrape them. Below is an example of what reviews look like, along with the extra options that customers can indicate. 
-    ![](Plots/screenshot_review.png)
+
+
+![](Plots/screenshot_review.png)
 
 
 After we were able to collect the scraped product data, our analysis took off in two directions:
