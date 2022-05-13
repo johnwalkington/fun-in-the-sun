@@ -12,3 +12,6 @@ Bigram for group 2
 Unigram Word Cloud
 ![](Plots/Bigram_Word_WordCloud.png)
 Bigram Word Cloud
+
+![](Plots/Single_Word_Freq.png)
+![](Plots/Bigram_Word_Freq.png)
