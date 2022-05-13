@@ -70,9 +70,25 @@ Let's start with with our first Tableau plot.
 
 Below is a map of all of the reviews scraped, as you can see most customers find themselves in the United States of America. However, it appears that YesStyle has a lot of fans in the European Union, Australia, and the UK as well. This is a surprising result! Why?
 
-Well as mentioned before, Europe and Australia (think hole in the ozone) have some of the strictest requirements for sun protection within their sunscreens. These countries also have access a broader range of filters, much like asia. One hypothesis is that Asian sunscreens offer something more than just sun protection, their formulas could be more cosmetically elegant or have more soothing ingredients compared to those available on the European or Australian market. 
+Well as mentioned before, Europe and Australia (think hole in the ozone) have some of the strictest requirements for sun protection within their sunscreens. These countries also have access a broader range of filters, much like Asia. One hypothesis is that Asian sunscreens offer something more than just sun protection, their formulas could be more cosmetically elegant or have more soothing ingredients compared to those available on the European or Australian market. 
 
 ![](Plots/Country_Map_Comments.png)
+
+
+Focusing on reviews in English: 
+
+Next, let's now take a look at the word frquency plots scraped from our reivews. Initially, we looked at one-word frequency, but this plot was not that interesting because people mention the word "sunscreen", similar results happened when we looked at two word frequency. These plots, along with their respective world clouds are listed in the appendix.
+
+Looking at the most telling data, here is the plot of a Trigram, basically the most commonly used groups of three words amongst reviewers:
+
+![](Plots/Trigram_Word_Freq.png)
+
+
+Looking at this plot it appears that most Sunscreen purchasers are concerned about "White Cast", which refers to sunscreen appearing white on skin. A sunscreen having a white cast is typically considered a negative. Skin concerns also seem to be frequently mentioned, like acne and dryness. 
+
+Okay, now onto Sentiment Analysis.
+
+After using Text Blob and NLTK to get polarity readings for all of the English reviews, we made a simple bar graph looking at the frequency of polarity ratings. 
 
 ## Limitations of analysis
 Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews. For example, customer reviews that had double negatives were falsely flagged as being negative. If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative. We were able to mitigate this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate. However, we are likely missing some nuance in our classification of language.
