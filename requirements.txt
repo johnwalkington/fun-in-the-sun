@@ -16,3 +16,5 @@ time
 dotenv
 sqlalchemy
 database
+dataframe_image
+os

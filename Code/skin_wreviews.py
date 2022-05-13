@@ -1,10 +1,11 @@
 import pandas as pd
 import os
 import re
+import nltk
 import nltk.corpus
 
 nltk.download('punkt')
-nltk.download('stopwords')
+nltk.download('stopwords') 
 
 df = pd.read_csv(os.path.join("Data", "Sunscreen_Comments_Full.csv"))
 df = df.reset_index()[["Product_ID", "Comment", "Skin_Tone", "Skin_Type"]]
