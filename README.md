@@ -1,7 +1,7 @@
 # Project Report
 
 ## Goal of analysis
-Sunscreens manufactured for the American market are substantially lacking in both appeal and protection. Because of the strict regulations the FDA places on sunscreen filters (the active ingredients in sunscreens), the United States has a limited offerings in terms of sun protection. Many of these approved ingredients cannot obtain the level of protection offered by foreign sunscreens. In fact, a study conducted Environmental Working Group of 446 American sunscreens found that close to two-thirds of them would fail to meet European Union standards for adaquate UVA protection. 
+Sunscreens manufactured for the American market are substantially lacking in both appeal and protection. Because of the strict regulations the FDA places on sunscreen filters (the active ingredients in sunscreens), the United States has a limited offerings in terms of sun protection. Many of these approved ingredients cannot obtain the level of protection offered by foreign sunscreens. In fact, a study conducted by the Environmental Working Group of 446 American sunscreens found that close to two-thirds of them would fail to meet European Union standards for adaquate UVA protection. 
 
 
 Sunscreens on the Korean and Japanese market are noted for both their high protection and their cosmetic elegance, attracting skincare fanatics around the world. Because of the difficulty associated with importing these sunscreens, many companies have been created just to cater to individuals wishing to have a reliable way to obtain Japanese and Korean skincare. This project focuses on the Hong Kong-based [yesstyle.com](yesstyle.com).
@@ -15,32 +15,46 @@ As a group that regularly uses foreign sunscreens, we were interested in investi
     filters used in Korean and Japanese formulas? 
 
 2. Scraping customer reviews.
-    - YesStyle has a robust review system, with some products getting thousands of reviews; even allowing users to list their age and 
+    - YesStyle has a robust review system, with some products getting thousands of reviews; even allowing users to list their skin tone and 
     skin-type (Dry, Oily, Combination). We wanted to scrape these reviews to gain insight on common complaints and praises used by the
-    skincare community. We wanted to assess the frequency of such phrases like: "drying", "moisturizing", "emollient", etc. 
+    skincare community. We wanted to assess the frequency of such phrases like: "white cast", "moisturizing", "emollient", etc. 
     - We used the text of the scraped reviews to perform sentiment analysis. We constructed a classification of reviews into categories
     depending on how positive our algorithm perceived them as being. We were then able to correlate the positive sentiment of reviews with
     customer and product attributes to get an idea of what customers valued what attributes the most.
 
-This project gives us a harder challenge than our midterm project, not only in terms of webscraping, but also in terms of our statistical analysis. We're interested consumer behavior and sentiments, looking at a niche and picky market segment that heavily relies on the opinions of fellow skincare enthusiasts to make purchasing decisions.
+This project gives us a harder challenge than our midterm project, not only in terms of webscraping, but also in terms of our statistical analysis. We're interested consumer behavior and sentiments, looking at a niche and picky market segment that heavily relies on the opinions of fellow skincare enthusiasts to make purchasing decisions. This project also presents a harder data cleaning project, many of the ingredients lists are disorganized and heavily rely on chemical names instead of trade names, meaning that the results wouldn't be translatable unless we convert them. 
 
 
-## Methodology
+## Methodology & Description of Project
 **data collection methods - documentation of data (all relevant columns/features) & what isn't in data**
-Steps to find the word frequency: 
-- We used the NLTK package
-- We filtered out common stopwords in the comments
-- We filtered out punctuation 
+Like our midterm project, we used Beautiful Soup, ChromeDriver, Hidden API's and Selinium to scrape product pages of sunscreens on Yes Style. In terms of product information, we focused mostly on ingredients, also collecting data (where available) on product origin, price etc.
 
-Through Lemmatization, we normalized the text so that words signifying the same action wouldn't be counted differently. For example, “walk”, “walking”, “walked” would all be casted to a verb part of speech, so that you would have the word “walk” counted three times. 
-We then created a counting dictionary of single words, bigrams, and trigrams, organized by count in descending order and took the top 30 most used words to plot in a barplot.
-For the single word count dictionary and bigrams word count dictionary, we also created a text cloud, for other visualization purposes.  
+Our main scraping goal here was collecting the community reviews that customers leave. We quickly were able to scrape the text content of the reviews, but Yes Style also allows customers to include hard-coded options for skin type, skin tone, age, and country of origin. Where reviewers indicated these options, we attempted to scrape them. Below is an example of what reviews look like, along with the extra options that customers can indicate. 
 
-We used a hidden API on the Yesstyle site to scrape our product data and customer reviews.  We collected info on each product's nation of origin, importing nation, cruelty-free and vegan characteristics, price, and selling popularity.  We also were able to collect an ingredient list for every sunscreen, and built our own dictionary to classify which of these ingredients were active ingredients.
+    ![Alt text](Plots/screenshot_review.jpeg?raw=true)
 
-We also scraped thousands of reviews and used Textblob and NLTK's sentiment analysis features to calculate their positive or negative polarity.  We were able to split words into commonly-occuring bigrams and tabulate their frequency to create wordclouds.
+After we were able to collect the scraped product data, our analysis took off in two directions:
+    We conducted sentiment analysis using NLP to gauge the polarity of reviews among the customers of Yes Style. Much like our above stated goal, once we had an inital assessment of polarity, we also wanted to look at word frequency among specific groups: organizing people by skin tone and skin type. 
 
-After scraping, we used Tableau, pulling our data from a Postgres database, to query our data and find valuable insights.  We were able to make maps of customer location and charts of product popularity.
+    The next direction specifically looked at ingredients. As we listed in our goal, we did some simple statisitical anaylsis of ingredients just to gauge their popularity. We also analyzed ingredient popularity based on skin type, to see how discerning members of various types were at picking out and reading ingredients lists. 
+
+ ### Sentiment Analysis Methods
+
+ After getting the scraped data, we used the NTLK package to conduct sentiment analysis on the reviews, filtering out common stop words, making sure the reviews we were analyzing were in English, and filtered out punctuation. We also used a process called lemmatization, which is normalizing the text so that words signifying the same action wouldn't be counted differently. For example, “walk”, “walking”, “walked” would all be casted to a verb part of speech, so that you would have the word “walk” counted three times. 
+
+ Once we went through this "cleaning process" we were able to conduct our analysis. Before looking at sentiments, we were interested in word frequency. We created a counting dictionary of single words, bigrams, and trigrams, organized by count in descending order and took the top 30 most used words to plot in a barplot. Some of these figures are compelling, but don't really have a big part in our analysis of the results, and will be listed in the appendix. For the single word count dictionary and bigrams word count dictionary, we also created a text cloud, for other visualization purposes.  
+
+After looking at word frequncy we used Textblob and NLTK's sentiment analysis features to calculate reviews' positive or negative polarity. We then used the star rating on Yes Style to gauge the accuracy of our predicting algorithm, seeing if high-starred reivews were correctly identified as positive. 
+
+### Ingredient Analysis Methods 
+
+The ingredient analysis part of this project is pretty straight-forward. Once we had the initial data, we first had to clean the raw data because many ingredients are un-recognizable. Ingredients are typically listed as their chemical name but are typically talked about in normal conversation using their trade name. For example, methylene bis-benzotriazolyl tetramethylbutylphenol is commonly known as Tinosorb M. We first created code and a dictionary to convert these ingredients to their trade names, placing it into a dataframe. After a basic look at simple ingredient popularity, we then looked at the most popular ingredients among different skin types. 
+
+#### Note on Database Usage 
+
+We complied some of our collected data into a PostgresSQL database, creating two tables. We then formed quereries and used Tableau to create visualizations, we will point out when these tableau visualizations pop up. 
+
+Now, let's head on down to findings!
 
 
 ## Description of project and findings/lack of findings:
@@ -50,7 +64,7 @@ supported by analysis
 ## Limitations of analysis
 Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews. For example, customer reviews that had double negatives were falsely flagged as being negative. If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative. We were able to mitigate this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate. However, we are likely missing some nuance in our classification of language.
 
-We also don't have complete information about customers--only a subset of customers leave reviews, and on those reviews only some leave information about their skin type or where they're from.  If we had more complete data, we could have perhaps trained our sentiment analysis algorithm better and had more data to present about Yesstyle's customer base.
+We also don't have complete information about customers--only a subset of customers leave reviews, and of those reviews, only some leave information about their skin type or where they're from. If we had more complete data, we could have perhaps trained our sentiment analysis algorithm better and had more data to present about Yes Style's customer base.
 
 ## Extensions of analysis/areas for more research
 If we had been able to scrape more comments and provide supervision for our sentiment analysis program, we could have perhaps trained its classification to be more accurate. Instead, we were limited to a built-in sentiment analysis feature in an NLP package.
