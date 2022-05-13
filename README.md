@@ -100,6 +100,7 @@ These first two scripts are used to scrape the initial data from YesStyle for pr
 2. Run get_comments.py
 
 These scripts are meant to clean the reviews and ingredients for product listings and create our plots
+
 3. Run skin_wreviews.py
 4. Run skin_analysis.py
 5. Run comment_w_rating.py
