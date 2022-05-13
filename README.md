@@ -34,6 +34,8 @@ Our main scraping goal here was collecting the community reviews that customers 
 
 ![](Plots/screenshot_review.png)
 
+Apologies for the huge image size, but as you can see, this is a typical review with the reviewer's country , skin type (combination), sex, age, and his skin tone (Fair) is noted by the little box next to "Combination". Notice how this reviewer is particuarly concerned about the active sun filters in the sunscreen he is reviewing. 
+
 
 After we were able to collect the scraped product data, our analysis took off in two directions:
 
@@ -60,9 +62,17 @@ We complied some of our collected data into a PostgresSQL database, creating two
 Now, let's head on down to findings!
 
 
-## Description of project and findings/lack of findings:
-clearly documented
-supported by analysis
+## Data and Findings
+
+Okay! Let's take a look at some imitial plots of our review data.
+
+Let's start with with our first Tableau plot.
+
+Below is a map of all of the reviews scraped, as you can see most customers find themselves in the United States of America. However, it appears that YesStyle has a lot of fans in the European Union, Australia, and the UK as well. This is a surprising result! Why?
+
+Well as mentioned before, Europe and Australia (think hole in the ozone) have some of the strictest requirements for sun protection within their sunscreens. These countries also have access a broader range of filters, much like asia. One hypothesis is that Asian sunscreens offer something more than just sun protection, their formulas could be more cosmetically elegant or have more soothing ingredients compared to those available on the European or Australian market. 
+
+![](Plots/Country_Map_Comments.png)
 
 ## Limitations of analysis
 Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews. For example, customer reviews that had double negatives were falsely flagged as being negative. If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative. We were able to mitigate this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate. However, we are likely missing some nuance in our classification of language.
