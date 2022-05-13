@@ -11,6 +11,7 @@ import dataframe_image as dfi
 
 # In[2]:
 
+# let's create a table that displays the frequency of sunfilters
 
 IN_PATH = os.path.join("Data", "Fitered_ingredients.csv")
 OUT_PATH = os.path.join("Data", "Filter_Freq.csv")
@@ -34,6 +35,7 @@ for ing_list in df.Filtered_Ingredients:
 
 # In[16]:
 
+# let's export the table we created as a png for the README
 
 df_styled = df.style.background_gradient()  # adding a gradient based on values in cell
 dfi.export(df_styled, "Plots/filter_freq.png")

@@ -262,5 +262,8 @@ df_all.columns = [
 ]
 df_all
 
+# export df to image for readme
+
+dfi.export(df_all, "Plots/ingredient_type.png")
 
 #
