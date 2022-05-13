@@ -132,15 +132,25 @@ These first two scripts are used to scrape the initial data from YesStyle for pr
 
 1. Run link_df_scraper.py
 2. Run product-info.py
-4. Run comment_scraper.py
+3. Run comment_scraper.py
 
-These scripts are meant to clean the reviews and ingredients for product listings and create our plots
+These scripts are meant to clean the customer reviews and ingredients for product listings and then create csv files and plots
 
 4. Run skin_wreviews.py
 5. Run skin_analysis.py
 6. Run comment_w_rating.py
-7. Run Skin_plot_and_nltk_regroup.ipynb
-8. Run Type_and_ingredient.ipynb
+7. Run Skin_plot_and_nltk_regroup.py
+8. Run Get_Sun_Ingredients.py
+9. Run Type_and_ingredient.py
+10. Run ingredients_frequency.py
+11. Run Word_Cloud.py
 
-9. Run the ingredients code
+These scripts are meant to perform sentimental analysis on the customer reviews
 
+12. Run NLP_Insights.py
+13. Run Sentimental_Analysis.py
+
+These scripts are meant to perform analysis in SQL on customer reviews and product listings and create figures
+
+14. Run database.py
+15. Run postgres-sql-python.py
