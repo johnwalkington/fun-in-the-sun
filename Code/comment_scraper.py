@@ -3,14 +3,26 @@ import pandas as pd
 import numpy as np 
 from selenium import webdriver
 import time
+import os
 
-link_df = pd.read_csv('/Users/patrickpoleshuk/Desktop/Python_Final/fun-in-the-sun/Product_Links.csv')
+chrome_path = os.path.join("drivers", "chromedriver 3")
 
-driver = webdriver.Chrome('/Users/patrickpoleshuk/Downloads/chromedriver 3')
+
+IN_PATH = os.path.join("Data", "Product_Links.csv")
+
+OUT_PATH = os.path.join("Data", "Sunscreen_Comments_Full.csv")
+
+link_df = pd.read_csv(IN_PATH)
+# We use the product links datframe from earlier. 
+driver = webdriver.Chrome(chrome_path)
 driver.get('https://laendercode.net/en/2-letter-list.html')
 time.sleep(1)
 soup = BeautifulSoup(driver.page_source)
 driver.close()
+
+# In order to get the commenter's country of origin, we have to parse their flag image url, and use those country
+# initials to get the full name of the country. This requires, scraping from another page and creating a dictionary,
+# with country initials as the key and full name of the country as the value. 
 
 c = soup.find('tbody').get_text(separator = '|').split('|')
 c = [e for e in c if len(e) > 1]
@@ -19,12 +31,14 @@ for init, full in zip(c[::2], c[1::2]):
     d_id[init.lower()] = full
     
     
-# The count is there for my own sanity: to make sure everything is working and running fine, as the scraper goes
-# through multiple product pages. 
+# The count is there to make sure everything is working and running fine, as the scraper goes
+# through hundreds of product pages. 
 
 # Since YesStyle is very restrictive on webscraping, even using their own internal API, this code might get 
 # blocked with a "401" error by the time anyone tries to run it. 
-# In that case you may need to go to an API formatter like Insomnia and format the internal API link again. 
+# In that case you may need to go to an API formatter like Insomnia and format the internal API link again by,
+# for example, copying in a cURL into Insomnia and looking at its auto-generated headers. This will only work
+# temporarily, as the requests status code will go from 200 to 401 after 30 or so minutes. 
 url = "https://www.yesstyle.com/rest/customer-review/v1/reviewer-reviews"
 dfs = []
 count = 0
@@ -32,7 +46,9 @@ for product in link_df.Links:
     product_id = (product.split('/')[-1].split('.')[1])
     print(product)
     for page in range(1, 10**6):
-        
+    # We look through the dataframe link table, and customize this header to include all products.
+    # Some products will not have any comments, and for products with something like 4,000 comments, the internal API
+    # only has roughly a little over 1,000 comments archived. 
         querystring = {"pageNum":str(page),"reviewProductId":str(product_id),"reviewerRatingFilterOptionId":"8","sortByOptionId":"130"}
 
         payload = ""
@@ -59,6 +75,12 @@ for product in link_df.Links:
         response = requests.request("GET", url, data=payload, headers=headers, params=querystring)
         
         r = response.json()
+        # From the internal API, we can extract the information in a json format. From this we can parse it to get the
+        # title of the comment, the comment body, the star rating (normalized as 20,40,60,80, 100), skin tone & skin type,
+        # and country of origin.
+
+        # Since the json file is complex, with lists of dictionaries and subsequent dictionaries of lists within that, all the
+        # comment information is required to be parsed in a different way. 
         store = []
         for d in r.values(): 
             if type(d) != int:
@@ -67,6 +89,8 @@ for product in link_df.Links:
         
         if not json:
             break
+        # The loop will go through a million iterations, but if there are not more comments archived it the loop will end.
+        # This will occur at some select number after 1,000, or a lot sooner if the products have very few comments. 
     
         rev = []
         ratings = []
@@ -129,6 +153,8 @@ for product in link_df.Links:
                 flag_url = (d['countryAnswer']['remarkValue'])
                 code = flag_url.split('/')[-1].split('-')[0]
                 mat[indexing].insert(-1, d_id[code])
+                # This is where that dictionary comes into play from earlier, since the dictionary had no country attribute; only
+                # the flag. 
             else: 
                 mat[indexing].insert(-1, np.nan)
         
@@ -139,15 +165,17 @@ for product in link_df.Links:
     
     
         df = pd.DataFrame(mat)
-    
+        # We get a matrix of the infomation, which we store into a dataframe. We then append that dataframe into a list, so we have
+        # a list of dataframes. 
         dfs.append(df)
     count += 1
 
     print(count)
-    
+# To get the final comment dataframe, we concatenate a list of all the individual product comment dataframes and push it to a csv
+# file. 
 comm = pd.concat(dfs).reset_index().iloc[:, 1:]
 
 comm.columns = ['Product_ID', 'Title', 'Comment', 'Date', 'Extra', 'Gender',
                 'Age', 'Skin_Tone', 'Skin_Type', 'Country', 'Rating']
 
-comm.to_csv('Sunscreen_Comments_Full.csv')
+comm.to_csv(OUT_PATH)
