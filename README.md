@@ -26,16 +26,15 @@ This project gives us a harder challenge than our midterm project, not only in t
 
 
 ## Methodology & Description of Project
-**data collection methods - documentation of data (all relevant columns/features) & what isn't in data**
+
 Like our midterm project, we used Beautiful Soup, ChromeDriver, Hidden API's and Selinium to scrape product pages of sunscreens on Yes Style. In terms of product information, we focused mostly on ingredients, also collecting data (where available) on product origin, price etc.
 
-Our main scraping goal here was collecting the community reviews that customers leave. We quickly were able to scrape the text content of the reviews, but Yes Style also allows customers to include hard-coded options for skin type, skin tone, age, and country of origin. Where reviewers indicated these options, we attempted to scrape them. Below is an example of what reviews look like, along with the extra options that customers can indicate. 
+Our main scraping goal here was collecting the community reviews that customers leave. We quickly were able to scrape the text content of the reviews, but Yes Style also allows customers to include hard-coded options for skin type, skin tone, age, and country of origin. Where reviewers indicated these options, we attempted to scrape them. We were able to scrape the information from 538 Sunscreens, along with roughly 23,0000 reviews attached to various sunscreens. Below is an example of what reviews look like, along with the extra options that customers can indicate. 
 
 
 ![](Plots/screenshot_review.png)
 
 Apologies for the huge image size, but as you can see, this is a typical review with the reviewer's country , skin type (combination), sex, age, and his skin tone (Fair) is noted by the little box next to "Combination". Notice how this reviewer is particuarly concerned about the active sun filters in the sunscreen he is reviewing. 
-
 
 After we were able to collect the scraped product data, our analysis took off in two directions:
 
@@ -73,6 +72,10 @@ Below is a map of all of the reviews scraped, as you can see most customers find
 Well as mentioned before, Europe and Australia (think hole in the ozone) have some of the strictest requirements for sun protection within their sunscreens. These countries also have access a broader range of filters, much like Asia. One hypothesis is that Asian sunscreens offer something more than just sun protection, their formulas could be more cosmetically elegant or have more soothing ingredients compared to those available on the European or Australian market. 
 
 ![](Plots/Country_Map_Comments.png)
+
+Let's have a quick chat looking at the other map created in Tableau, this one shows where the majority of our sunscreens were manufactured. Please keep in mind that because of the nature of incomplete information on YesStyle, not all of the sunscreens have a manufacturing country listed. But looking at the map below as a sample, we can pretty confidently say the majority of sunscreens are manufactured in Japan or South Korea.
+
+![](Plots/Made_In_Count_Map.png)
 
 
 Focusing on reviews in English: 
