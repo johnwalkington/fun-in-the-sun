@@ -108,6 +108,45 @@ Below is the confusion matrix resulting from comparing the predicted and actual 
 
 From the confusion matrix, it appears that the algorithm correctly predicted 16,908 good reviews and 228 negative reviews. However, the algorithm determined 921 good reviews as bad and 425 bad reviews as good. It appears that the algorithm is good at predicting positive reviews, but it's not so good at percieving negativity. However, the data is already overwhelmingly positive.  
 
+Let's see what specific skin tones have to say.
+
+First, let's take a look at the skin tone mix within the data, please take a gander at the chart below:
+
+![](Plots/skin_tone_pie.png)
+
+It appears that most people are on the fair to light spectrum for skin tone, let's take a look a trigrams for groups of skin types. Unigrams and bigrams for the groups are included in the appenix. 
+
+Group 1 contains the skin tones light and fair. Group 2 Contains every subsequent deeper skin tone.
+
+![](Plots/trigram_group1.png) ![](Plots/trigram_group2.png)
+
+
+Both groups seem about equally concerned about white cast, however the fair to light group seems ever so slightly more concerned about acne. Which seems to make sense, as acne appears more red and lighter skin. 
+
+
+Before we move on the analyzing ingredients, lets take a quick look at the mix of skin types within the data set, please see the plot below:
+
+![](Plots/skin_type_pie.png)
+
+Looking at the plot above, it looks like the skin type combination is the most prevalent follwed by dry.
+
+Now that that's out of the way, let's also take a peek at the sunfilter ingredients. Getting the proper ingredients probably presented the biggest data cleaning challenge because of the inconsistency in the ingredients list scraped from YesStyle. 
+
+Here is the list of the frequency of ingredients based on the trade name
+
+
+![](filter_freq.png)
+
+Interestinly enough, Titanium Dioxide and Zinc Oxide are very high on the list. This is curious because both of these ingredients are notorious for thier white casts, we suspect that the product list may be crowded with foundation prouducts with SPF protection. These are typically marketed as 'Tone Up' products. Another explination is that frequently manufacturers will attempt add more cosemetically elegant filters in formulas with Zinc Oxide and Titanium to lessen the white cast, which means that can frequently appear in formulas, but won't cause a large white cast effect. Finally, Zinc Oxide and Titanium Dioxide are known for being senstive skin friendly, which may explain their prevalence.
+
+Next we decided to combine our work with skin types with our work with sunfilter ingredients. We organized reviews by skin type, matching the sun filter ingredients with the skin type of the reviewer using inner join. Below is the resulting table:
+
+![](ingredient_type.png)
+
+Surprisingly, there doesn't seem to be much variation between skin types based on ingredients, this might be due to the similarity between formulas!
+
+
+
 ## Limitations of analysis
 Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews. For example, customer reviews that had double negatives were falsely flagged as being negative. If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative. We were able to mitigate this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate. However, we are likely missing some nuance in our classification of language.
 
