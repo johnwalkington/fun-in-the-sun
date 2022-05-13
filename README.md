@@ -31,12 +31,13 @@ Like our midterm project, we used Beautiful Soup, ChromeDriver, Hidden API's and
 
 Our main scraping goal here was collecting the community reviews that customers leave. We quickly were able to scrape the text content of the reviews, but Yes Style also allows customers to include hard-coded options for skin type, skin tone, age, and country of origin. Where reviewers indicated these options, we attempted to scrape them. Below is an example of what reviews look like, along with the extra options that customers can indicate. 
 
-    ![Alt text](Plots/screenshot_review.jpeg?raw=true)
+    ![Screenshot](Plots/screenshot_review.jpeg)
 
 After we were able to collect the scraped product data, our analysis took off in two directions:
-    We conducted sentiment analysis using NLP to gauge the polarity of reviews among the customers of Yes Style. Much like our above stated goal, once we had an inital assessment of polarity, we also wanted to look at word frequency among specific groups: organizing people by skin tone and skin type. 
 
-    The next direction specifically looked at ingredients. As we listed in our goal, we did some simple statisitical anaylsis of ingredients just to gauge their popularity. We also analyzed ingredient popularity based on skin type, to see how discerning members of various types were at picking out and reading ingredients lists. 
+We conducted sentiment analysis using NLP to gauge the polarity of reviews among the customers of Yes Style. Much like our above stated goal, once we had an inital assessment of polarity, we also wanted to look at word frequency among specific groups: organizing people by skin tone and skin type. 
+    
+The next direction specifically looked at ingredients. As we listed in our goal, we did some simple statisitical anaylsis of ingredients just to gauge their popularity. We also analyzed ingredient popularity based on skin type, to see how discerning members of various types were at picking out and reading ingredients lists. 
 
  ### Sentiment Analysis Methods
 
