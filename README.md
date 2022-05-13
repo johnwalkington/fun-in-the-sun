@@ -108,6 +108,8 @@ Below is the confusion matrix resulting from comparing the predicted and actual 
 
 From the confusion matrix, it appears that the algorithm correctly predicted 16,908 good reviews and 228 negative reviews. However, the algorithm determined 921 good reviews as bad and 425 bad reviews as good. It appears that the algorithm is good at predicting positive reviews, but it's not so good at percieving negativity. However, the data is already overwhelmingly positive.  
 
+Okay now moving onto Ingredients
+
 ## Limitations of analysis
 Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews. For example, customer reviews that had double negatives were falsely flagged as being negative. If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative. We were able to mitigate this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate. However, we are likely missing some nuance in our classification of language.
 
