@@ -24,7 +24,7 @@ This project gives us a harder challenge than our midterm project, not only in t
 ## Methodology
 We used a hidden API on the Yesstyle site to scrape our product data and customer reviews.  We collected info on each product's nation of origin, importing nation, cruelty-free and vegan characteristics, price, and selling popularity.  We also were able to collect an ingredient list for every sunscreen, and built our own dictionary to classify which of these ingredients were active ingredients.
 
-We also scraped thousands of reviews and used Textblob and NLTK's sentiment analysis features to calculate their positivity or negativity.  We were able to split words into commonly-occuring bigrams and tabulate their frequency to create wordclouds.
+We also scraped thousands of reviews and used Textblob and NLTK's sentiment analysis features to calculate their positive or negative polarity.  We were able to split words into commonly-occuring bigrams and tabulate their frequency to create wordclouds.
 
 After scraping, we used Tableau, pulling our data from a Postgres database, to query our data and find valuable insights.  We were able to make maps of customer location and charts of product popularity.
 
