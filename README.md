@@ -145,14 +145,19 @@ Next we decided to combine our work with skin types with our work with sunfilter
 
 Surprisingly, there doesn't seem to be much variation between skin types based on ingredients, this might be due to the similarity between formulas!
 
+For some other interesting plots, like bigrams, unigrams and word clouds please visit the appendix located at the top of this repo!
+
 
 
 ## Limitations of analysis
 Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews. For example, customer reviews that had double negatives were falsely flagged as being negative. If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative. We were able to mitigate this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate. However, we are likely missing some nuance in our classification of language.
 
-We also don't have complete information about customers--only a subset of customers leave reviews, and of those reviews, only some leave information about their skin type or where they're from. If we had more complete data, we could have perhaps trained our sentiment analysis algorithm better and had more data to present about Yes Style's customer base.
+We also don't have complete information about customers--only a subset of customers leave reviews, and of those reviews, only some leave information about their skin type or where they're from. If we had more complete data, we could have perhaps trained our sentiment analysis algorithm better and had more data to present about Yes Style's customer base. Missing data, in general, was a limitation simply because of the disorganized nature of YesStyle and the facts of life when scraping. 
 
-When we call the url, or even click on it within YesStyle’s internal API, YesStyle will claim that we lack valid authentication credentials, and the json-formatted comment data will show up empty. Due to this issue, we used a third party API software, Insomnia, to format a query string and specific errors to get past a 401 requests error, upon passing in cURL item. Without this additional information, this header information is only temporary, and the request code will only be 200 for roughly 30-40 minutes. We would have to post in another cURL into Insomnia for it to give us the necessary credentials. For this reason, the code is not reproducible; if someone was to use Insomnia and use the headers they were supplied with immediately, no json data will be available to parse.
+We also found some issues with the trigrams and bigrams it may have appeared that our lemmatization didn't work correctly, but becuse leave and leaves were included at the same time when they should have bee recognized as part of the same verb. We also didn't have time to properly weight our algorithm to better conduct NLP.
+
+
+
 
 ## Extensions of analysis/areas for more research
 If we had been able to scrape more comments and provide supervision for our sentiment analysis program, we could have perhaps trained its classification to be more accurate. Instead, we were limited to a built-in sentiment analysis feature in an NLP package.
@@ -173,9 +178,14 @@ These first three scripts are used to scrape the initial data from YesStyle for 
 
 1. Run link_df_scraper.py
 2. Run product-info.py
+
+For commentscraper.py , when we call the url, or even click on it within YesStyle’s internal API, YesStyle will claim that we lack valid authentication credentials, and the json-formatted comment data will show up empty. Due to this issue, we used a third party API software, Insomnia, to format a query string and specific errors to get past a 401 requests error, upon passing in cURL item. Without this additional information, this header information is only temporary, and the request code will only be 200 for roughly 30-40 minutes. We would have to post in another cURL into Insomnia for it to give us the necessary credentials. For this reason, the code is not reproducible; if someone was to use Insomnia and use the headers they were supplied with immediately, no json data will be available to parse.
+
 3. Run comment_scraper.py
 
-These scripts are meant to clean the customer reviews and ingredients for product listings and then create csv files and plots
+These scripts are meant to clean the customer reviews and ingredients for product listings and then create csv files and plots.
+
+There may be some issues with NLTK, we tried to hedge these by having the code to download the stopword lists and the punkt list within the file skin_wreviews.
 
 4. Run skin_wreviews.py
 5. Run skin_analysis.py
@@ -194,4 +204,7 @@ These scripts are meant to perform sentimental analysis on the customer reviews
 These scripts are meant to perform analysis in SQL on customer reviews and product listings and create figures
 
 14. Run database.py
+
+Be sure to update the .env with the proper credentials to access your instance.
+
 15. Run postgres-sql-python.py
