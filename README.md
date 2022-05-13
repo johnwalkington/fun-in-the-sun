@@ -86,7 +86,13 @@ Additionally, if we had more complete data on product sales, we could have mined
 
 ## Source of datasets
 We scraped the top rated sunscreens from [yesstyle.com](yesstyle.com), including product information and customer reviews.
-
+1. Run
+2. Run
+3. Run
+4. Run
+5. Run
+6. Run
+7. Run
 
 ## Reproducibility
 In order to rerun the analysis, you will need to install the requirements which contains all the necessary packages, and then run the files in a certain order.
