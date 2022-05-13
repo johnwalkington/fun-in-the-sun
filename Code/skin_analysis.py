@@ -4,43 +4,41 @@ import re
 import nltk.corpus
 from nltk.tokenize import word_tokenize
 
-#cleaning comments a bit more before making analysis
+# cleaning comments a bit more before making analysis
 
-df=pd.read_csv(os.path.join('Data','Skin_wreviews.csv'))
-df['Comment'] = df['Comment'].str.lower()
+df = pd.read_csv(os.path.join("Data", "Skin_wreviews.csv"))
+df["Comment"] = df["Comment"].str.lower()
 
-df = df[~df['Comment'].str.contains(' un ', na=False)]
-df = df[~df['Comment'].str.contains(' uno ', na=False)]
-df = df[~df['Comment'].str.contains(' una ', na=False)]
-df = df[~df['Comment'].str.contains(' e ', na=False)]
-df = df[~df['Comment'].str.contains(' el ', na=False)]
-df = df[~df['Comment'].str.contains(' la ', na=False)]
-df = df[~df['Comment'].str.contains(' este ', na=False)]
-df = df[~df['Comment'].str.contains(' est ', na=False)]
-df = df[~df['Comment'].str.contains(' es ', na=False)]
-df = df[~df['Comment'].str.contains(' ra ', na=False)]
-df = df[~df['Comment'].str.contains(' gef ', na=False)]
-df = df[~df['Comment'].str.contains(' se ', na=False)]
-df = df[~df['Comment'].str.contains(' est ', na=False)]
-df = df[~df['Comment'].str.contains(' er ', na=False)]
-df = df[~df['Comment'].str.contains(' sie ', na=False)]
-df = df[~df['Comment'].str.contains(' ich ', na=False)]
-df = df[~df['Comment'].str.contains(' que ', na=False)]
-df = df[~df['Comment'].str.contains(' den ', na=False)]
+df = df[~df["Comment"].str.contains(" un ", na=False)]
+df = df[~df["Comment"].str.contains(" uno ", na=False)]
+df = df[~df["Comment"].str.contains(" una ", na=False)]
+df = df[~df["Comment"].str.contains(" e ", na=False)]
+df = df[~df["Comment"].str.contains(" el ", na=False)]
+df = df[~df["Comment"].str.contains(" la ", na=False)]
+df = df[~df["Comment"].str.contains(" este ", na=False)]
+df = df[~df["Comment"].str.contains(" est ", na=False)]
+df = df[~df["Comment"].str.contains(" es ", na=False)]
+df = df[~df["Comment"].str.contains(" ra ", na=False)]
+df = df[~df["Comment"].str.contains(" gef ", na=False)]
+df = df[~df["Comment"].str.contains(" se ", na=False)]
+df = df[~df["Comment"].str.contains(" est ", na=False)]
+df = df[~df["Comment"].str.contains(" er ", na=False)]
+df = df[~df["Comment"].str.contains(" sie ", na=False)]
+df = df[~df["Comment"].str.contains(" ich ", na=False)]
+df = df[~df["Comment"].str.contains(" que ", na=False)]
+df = df[~df["Comment"].str.contains(" den ", na=False)]
 
-df=df.drop_duplicates().dropna()
-df=df[df['Comment'].map(len) > 10]
-df=df.reset_index()[['Product_ID','Comment','Skin_Tone','Skin_Type']]
-
-
+df = df.drop_duplicates().dropna()
+df = df[df["Comment"].map(len) > 10]
+df = df.reset_index()[["Product_ID", "Comment", "Skin_Tone", "Skin_Type"]]
 
 
-#Finding basic information for skin tone and skin type of yesstyle customers
+# Finding basic information for skin tone and skin type of yesstyle customers
 
-Skintone = df.groupby('Skin_Tone')
+Skintone = df.groupby("Skin_Tone")
 Skintone.size()
 
-#Skin_Tone
+# Skin_Tone
 
 # Deep              48
 # Fair             590
@@ -52,7 +50,7 @@ Skintone.size()
 # Tan              188
 # Very Deep         17
 
-Skintype = df.groupby('Skin_Type')
+Skintype = df.groupby("Skin_Type")
 Skintype.size()
 
 # Skin_Type
@@ -63,10 +61,10 @@ Skintype.size()
 # Oily            524
 
 
-Skintone_Skintype=df.groupby(['Skin_Tone','Skin_Type'])
+Skintone_Skintype = df.groupby(["Skin_Tone", "Skin_Type"])
 Skintone_Skintype.size()
 
-# Skin_Tone     Skin_Type  
+# Skin_Tone     Skin_Type
 
 # Deep          Combination     24
 #               Dry              7
@@ -114,7 +112,7 @@ Skintone_Skintype.size()
 #               Oily             5
 
 
-Skintype_Skintone=df.groupby(['Skin_Type','Skin_Tone'])
+Skintype_Skintone = df.groupby(["Skin_Type", "Skin_Tone"])
 Skintype_Skintone.size()
 
 # Combination  Deep             24
@@ -158,11 +156,5 @@ Skintype_Skintone.size()
 #              Very Deep         5
 
 
-
-
-
-outpath=os.path.join('Data','Skin_wreviews_cleaned.csv')
+outpath = os.path.join("Data", "Skin_wreviews_cleaned.csv")
 df.to_csv(outpath)
-
-
-
