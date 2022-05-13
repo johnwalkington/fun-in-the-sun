@@ -88,7 +88,22 @@ Looking at this plot it appears that most Sunscreen purchasers are concerned abo
 
 Okay, now onto Sentiment Analysis.
 
-After using Text Blob and NLTK to get polarity readings for all of the English reviews, we made a simple bar graph looking at the frequency of polarity ratings. 
+After using Text Blob and NLTK to get polarity readings (output is a number) for all of the English reviews, we made a simple bar graph looking at the frequency of polarity ratings. Polarity refers to the overall sentiment of a comment.
+
+Looking at the graph below, you can see that most reviews are rated as positive, followed by unknown (indicates non English or strange formatting), followed by Very Positive, Negative, Neutral and then Very Negative.
+
+![](Plots/polarity_freq.png)
+
+It appears that most people who review Sunscreen on YesStyle enjoy their purchase. However, because NLP algorithms are not perfect, the overwhelmingly positive result may be misleading.
+
+To gauge the accuracy of Text Blob and NLTK's predictions, we created a way to "test" actual rating versus predicted ratings using the star rating system found on YesStyle. For the simplicity of analysis, instead of five different polarity categories, we re-sorted our data into positive and negative ratings. This became our predicted data. Using dummmies sorted from star ratings, we used this a measure for the true sentiment of a review. Reviews with star ratings above .6 we deemed positive, reviews at .4 and below were deemed negative. 
+
+Below is the confusion matrix resulting from comparing the predicted and actual data. 
+
+![](Plots/confusion.png)
+
+
+From the confusion matrix, it appears that the algorithm correctly predicted 16,908 good reviews and 228 negative reviews. However, the algorithm determined 921 good reviews as bad and 425 bad reviews as good. It appears that the algorithm is good at predicting positive reviews, but it's not so good at percieving negativity. However, the data is already overwhelmingly positive.  
 
 ## Limitations of analysis
 Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews. For example, customer reviews that had double negatives were falsely flagged as being negative. If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative. We were able to mitigate this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate. However, we are likely missing some nuance in our classification of language.
