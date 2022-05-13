@@ -103,9 +103,8 @@ These scripts are meant to clean the reviews and ingredients for product listing
 3. Run skin_wreviews.py
 4. Run skin_analysis.py
 5. Run comment_w_rating.py
-6. Run Skin_plot_and_nltk.ipynb
-7. Run Skin_plot_and_nltk_regroup.ipynb
-8. Run Type_and_ingredient.ipynb
+6. Run Skin_plot_and_nltk_regroup.ipynb
+7. Run Type_and_ingredient.ipynb
 
-9. Run the ingredients code
+8. Run the ingredients code
 
