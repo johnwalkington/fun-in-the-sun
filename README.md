@@ -31,7 +31,7 @@ Like our midterm project, we used Beautiful Soup, ChromeDriver, Hidden API's and
 
 Our main scraping goal here was collecting the community reviews that customers leave. We quickly were able to scrape the text content of the reviews, but Yes Style also allows customers to include hard-coded options for skin type, skin tone, age, and country of origin. Where reviewers indicated these options, we attempted to scrape them. Below is an example of what reviews look like, along with the extra options that customers can indicate. 
 
-    ![Screenshot](Plots/screenshot_review.jpeg)
+    ![screenshot](https://github.com/johnwalkington/fun-in-the-sun/blob/main/Plots/screenshot_review.jpeg)
 
 After we were able to collect the scraped product data, our analysis took off in two directions:
 
