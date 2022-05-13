@@ -18,13 +18,14 @@ As a group that regularly uses foreign sunscreens, we were interested in investi
     - YesStyle has a robust review system, with some products getting thousands of reviews; even allowing users to list their age and 
     skin-type (Dry, Oily, Combination). We wanted to scrape these reviews to gain insight on common complaints and praises used by the
     skincare community. We wanted to assess the frequency of such phrases like: "drying", "moisturizing", "emollient", etc. 
-    - We used the text of the scraped reviews to perform sentiment analysis.  We constructed a classification of reviews into categories depending on how       positive our algorithm perceived them as being.  We were then able to correlate the positive sentiment of reviews with customer and product attributes      to get an idea of what customers valued what attributes the most.
+    - We used the text of the scraped reviews to perform sentiment analysis. We constructed a classification of reviews into categories
+    depending on how positive our algorithm perceived them as being. We were then able to correlate the positive sentiment of reviews with
+    customer and product attributes to get an idea of what customers valued what attributes the most.
 
 This project gives us a harder challenge than our midterm project, not only in terms of webscraping, but also in terms of our statistical analysis. We're interested consumer behavior and sentiments, looking at a niche and picky market segment that heavily relies on the opinions of fellow skincare enthusiasts to make purchasing decisions.
 
 
 ## Methodology
-
 **data collection methods - documentation of data (all relevant columns/features) & what isn't in data**
 Steps to find the word frequency: 
 - We used the NLTK package
@@ -52,18 +53,32 @@ Sentiment analysis is hard to fine-tune, so we encountered errors where our Text
 We also don't have complete information about customers--only a subset of customers leave reviews, and on those reviews only some leave information about their skin type or where they're from.  If we had more complete data, we could have perhaps trained our sentiment analysis algorithm better and had more data to present about Yesstyle's customer base.
 
 ## Extensions of analysis/areas for more research
-If we had been able to scrape more comments and provide supervision for our sentiment analysis program, we could have perhaps trained its classification to be more accurate.  Instead, we were limited to a built-in sentiment analysis feature in an NLP package.
+If we had been able to scrape more comments and provide supervision for our sentiment analysis program, we could have perhaps trained its classification to be more accurate. Instead, we were limited to a built-in sentiment analysis feature in an NLP package.
 
-Also, if we had more complete data on product sales, we could have mined valuable insights into what makes certain products sell more.  We also could have constructed a regression to find how much different features contribute to price.
+Additionally, if we had more complete data on product sales, we could have mined valuable insights into what makes certain products sell more. We also could have constructed a regression to find how much different features contribute to price.
 
 ## Source of datasets
-
 We scraped the top rated sunscreens from [yesstyle.com](yesstyle.com), including product information and customer reviews.
 
 
 ## Reproducibility
-1. Run the product info scraper
-2. Run the comment scraper
-3. Run the comment code for the bar plots, word cloud, sentiment analysis
-4. Run the ingredients code
+In order to rerun the analysis, you will need to install the requirements which contains all the necessary packages, and then run the files in a certain order.
+
+In order to install the requirements, you will need to run "pip3 install -r requirements.txt"
+
+Once these pacakges are installed, the order of running the files is as follows:
+
+These first two scripts are used to scrape the initial data from YesStyle for product listings and reviews. These scripts are not neccessary to reproduce our analysis as the final dataset is included in the data folder. The Selenium scraper may run into fake user issues and Google Vertex AI issues, YesStyle has a chance to detect the scraper, and reject the scraper's request for data. Because the Google Vertex AI may or may not have a browser, the Selenium Scraper may not open Chrome properly.
+1. Run comment_scraper.py
+2. Run get_comments.py
+
+These scripts are meant to clean the reviews and ingredients for product listings and create our plots
+3. Run skin_wreviews.py
+4. Run skin_analysis.py
+5. Run comment_w_rating.py
+6. Run Skin_plot_and_nltk.ipynb
+7. Run Skin_plot_and_nltk_regroup.ipynb
+8. Run Type_and_ingredient.ipynb
+
+9. Run the ingredients code
 
