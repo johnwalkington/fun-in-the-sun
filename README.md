@@ -10,7 +10,7 @@ Sunscreens on the Korean and Japanese market are noted for both their high prote
 As a group that regularly uses foreign sunscreens, we were interested in investigating this site for a number of reasons: 
 
 1. Scraping sunscreen ingredients.
-    - We wanted to do a simple statistical analysis of the filters lsited in the best selling sunscreens on [yesstyle.com](yesstyle.com).
+    - We wanted to do a simple statistical analysis of the filters listed in the best selling sunscreens on [yesstyle.com](yesstyle.com).
     - This gives us answers to a couple of questions: What sunscreen filters are attracting foreign consumers? What are the most popular
     filters used in Korean and Japanese formulas? 
 
@@ -152,6 +152,8 @@ Sentiment analysis is hard to fine-tune, so we encountered errors where our Text
 
 We also don't have complete information about customers--only a subset of customers leave reviews, and of those reviews, only some leave information about their skin type or where they're from. If we had more complete data, we could have perhaps trained our sentiment analysis algorithm better and had more data to present about Yes Style's customer base.
 
+When we call the url, or even click on it within YesStyle’s internal API, YesStyle will claim that we lack valid authentication credentials, and the json-formatted comment data will show up empty. Due to this issue, we used a third party API software, Insomnia, to format a query string and specific errors to get past a 401 requests error, upon passing in cURL item. Without this additional information, this header information is only temporary, and the request code will only be 200 for roughly 30-40 minutes. We would have to post in another cURL into Insomnia for it to give us the necessary credentials. For this reason, the code is not reproducible; if someone was to use Insomnia and use the headers they were supplied with immediately, no json data will be available to parse.
+
 ## Extensions of analysis/areas for more research
 If we had been able to scrape more comments and provide supervision for our sentiment analysis program, we could have perhaps trained its classification to be more accurate. Instead, we were limited to a built-in sentiment analysis feature in an NLP package.
 
@@ -167,7 +169,7 @@ In order to install the requirements, you will need to run "pip3 install -r requ
 
 Once these pacakges are installed, the order of running the files is as follows:
 
-These first two scripts are used to scrape the initial data from YesStyle for product listings and reviews. These scripts are not neccessary to reproduce our analysis as the final dataset is included in the data folder. The Selenium scraper may run into fake user issues and Google Vertex AI issues, YesStyle has a chance to detect the scraper, and reject the scraper's request for data. Because the Google Vertex AI may or may not have a browser, the Selenium Scraper may not open Chrome properly.
+These first three scripts are used to scrape the initial data from YesStyle for product listings and reviews. These scripts are not neccessary to reproduce our analysis as the final dataset is included in the data folder. The Selenium scraper may run into fake user issues and Google Vertex AI issues, YesStyle has a chance to detect the scraper, and reject the scraper's request for data. Because the Google Vertex AI may or may not have a browser, the Selenium Scraper may not open Chrome properly.
 
 1. Run link_df_scraper.py
 2. Run product-info.py
