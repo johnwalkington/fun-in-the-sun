@@ -76,6 +76,7 @@ sns.barplot(sent_counts.index, sent_counts.values, alpha=0.8)
 plt.title('Review Counts Based on Polarity')
 plt.ylabel('Number of Occurrences', fontsize=12)
 plt.xlabel('Sentiment', fontsize=12)
+plt.savefig("Plots/polarity_freq.png")
 plt.show()
 
 

@@ -204,6 +204,8 @@ sns.heatmap(cm,cmap= "Blues",
             yticklabels = ['Bad Reviews','Good Reviews'])
 plt.xlabel("Predicted")
 plt.ylabel("Actual");
+plt.savefig("Plots/confusion.png")
+plt.show()
 
 
 # In[ ]:

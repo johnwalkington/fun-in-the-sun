@@ -6,7 +6,13 @@ import time
 import numpy as np
 import os
 
-driver = webdriver.Chrome('/Users/patrickpoleshuk/Downloads/chromedriver 5')
+# Given the different ording of the scraper code, we repeated this first step
+# in the product url dataframe. Only now, instead of pushing our findings into
+# a csv, we keep the links so that we can extract relevant information from
+# the individual product itself. 
+chrome_path = os.path.join("drivers", "chromedriver 3")
+driver = webdriver.Chrome(chrome_path)
+OUT_PATH = os.path.join("Data", "Product_Info_Sunscreen.csv")
 
 mat = []
 product_links = []
@@ -36,11 +42,15 @@ time.sleep(1)
 all_links = ([link for i in range(len(mat)) for link in mat[i]])
 all_links = list(set(all_links))
 
-driver = webdriver.Chrome('/Users/patrickpoleshuk/Downloads/chromedriver 5')
+driver = webdriver.Chrome(chrome_path)
+# From the product links, we scrape the attributes of the sunscreen product itself. This includes things like
+# ingredients, price, name of the product, country that it is imported from etc. 
 json = {}
 new_mat = []
 d = {}
 count = 0
+# Once again we have a count to make sure everything is working fine, given that this takes a long time to run.
+# The results are inputed as dictionaries and then put into a json format. 
 for prod in all_links:
     try:
         driver.get(prod)
@@ -73,22 +83,20 @@ for prod in all_links:
         print(count)
     except:
         continue
-
+# If the keys in the dictionaries have ":" at the end or any white space, we control for that here, and move our
+# results into a dataframe. 
 for d in json.keys():
     json[d] = {k.replace(":", ""): v for k, v in json[d].items()}
     json[d] = {k.strip(): v for k, v in json[d].items()}
 sample = pd.DataFrame.from_dict(json.values(), orient="columns")
 sample.reset_index(inplace=True)
 sample["index"] = json.keys()
-
+ 
 table1 = sample.set_index('Catalog No.')
 table1.columns = ['Product', 'Imported Country', 'Other Info', 'Price', 'Ingredients', 'Made in', 
                  'Cruelty_free', 'Vegan']
 
 table1['Ranking_In_Best_Seller_List'] = [i+1 for i in range(len(table1.iloc[:, 0]))]
-
-table1.to_csv('Product_Info_Sunscreen.csv')
-
-
-
+# We push our dataframe to a csv. 
+table1.to_csv(OUT_PATH)
 
