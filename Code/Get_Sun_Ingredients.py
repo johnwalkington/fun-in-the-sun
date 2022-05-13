@@ -6,9 +6,12 @@ OUT_PATH = os.path.join("Data", "Fitered_ingredients.csv")
 
 df = pd.read_csv(IN_PATH)
 
+# this file is used to translate chemical names to trade names, the beggining of this file is used  to import data
 filter_ingredients = df["Ingredients"]
 
 ingredient_list = []
+
+# this code is getting the ingredient strings isolated, making sure that things will be nice and clean. We're converting to uppercase because a lot of the ingredients have inconsistent casing.
 
 for i in range(len(filter_ingredients)):
     row = filter_ingredients[i]
@@ -18,6 +21,8 @@ for i in range(len(filter_ingredients)):
             ingredient_list = ingredient_list
         else:
             ingredient_list += [item.strip()]
+
+# okay this list is HUGE, but it's formatted this way to catch typos, weird formatting, Japan calls Titanium Dioxide Tianium Oxide etc, it's loading in a dictionary!
 
 ingredient_dict = {
     "BIS-ETHYLHEXYLOXYPHENOL METHOXYPHENYL TRIAZINE": "TINOSORB S",
@@ -64,6 +69,7 @@ keys = ingredient_dict.keys()
 
 row_ingredient_list = []
 
+# okay this is actually doing the data recoding, we're finally getting most of the chemical names, typos and all to read in properly.
 
 for i in range(len(filter_ingredients)):
     row = filter_ingredients[i]

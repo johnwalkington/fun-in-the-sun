@@ -8,6 +8,7 @@ import pandas as pd
 import numpy as np
 import csv
 import os
+import dataframe_image as dfi
 
 
 # Read data for ingredient

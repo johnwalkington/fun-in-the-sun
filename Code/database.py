@@ -3,9 +3,9 @@
 
 # In[4]:
 
+# hey this file is just for basic set up of a database, your .env file should have the proper credientials to log into your own postgres database
 
 import os
-
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
 
