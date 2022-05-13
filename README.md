@@ -16,15 +16,17 @@ As a group that regularly uses foreign sunscreens, we were interested in investi
     - YesStyle has a robust review system, with some products getting thousands of reviews; even allowing users to list their age and 
     skin-type (Dry, Oily, Combination). We wanted to scrape these reviews to gain insight on common complaints and praises used by the
     skincare community. We wanted to assess the frequency of such phrases like: "drying", "moisturizing", "emollient", etc. 
-    - Scraping reviews has another purpose for this project as well. We used the text of the scraped reviews to conduct a sentiment
-    analysis.
-    **(Need to fill in this section more).**
+    - We used the text of the scraped reviews to perform sentiment analysis.  We constructed a classification of reviews into categories depending on how       positive our algorithm perceived them as being.  We were then able to correlate the positive sentiment of reviews with customer and product attributes      to get an idea of what customers valued what attributes the most.
 
-This project gives us a harder challenge than our midterm project, not only in terms of webscraping, but also in terms of our statistical analysis. We're interested consumer behavior and sentiments, looking at a niche and picky market segment that heavily relies on the opinions of fellow skincare enthusiasts to make purchasing decisions. 
+This project gives us a harder challenge than our midterm project, not only in terms of webscraping, but also in terms of our statistical analysis. We're interested consumer behavior and sentiments, looking at a niche and picky market segment that heavily relies on the opinions of fellow skincare enthusiasts to make purchasing decisions.
 
 
 ## Methodology
-data collection methods - documentation of data (all relevant columns/features) & what isn't in data
+We used a hidden API on the Yesstyle site to scrape our product data and customer reviews.  We collected info on each product's nation of origin, importing nation, cruelty-free and vegan characteristics, price, and selling popularity.  We also were able to collect an ingredient list for every sunscreen, and built our own dictionary to classify which of these ingredients were active ingredients.
+
+We also scraped thousands of reviews and used Textblob and NLTK's sentiment analysis features to calculate their positivity or negativity.  We were able to split words into commonly-occuring bigrams and tabulate their frequency to create wordclouds.
+
+After scraping, we used Tableau, pulling our data from a Postgres database, to query our data and find valuable insights.  We were able to make maps of customer location and charts of product popularity.
 
 ## Description of project and findings/lack of findings:
 clearly documented
@@ -38,7 +40,7 @@ We also don't have complete information about customers--only a subset of custom
 ## Extensions of analysis/areas for more research
 If we had been able to scrape more comments and provide supervision for our sentiment analysis program, we could have perhaps trained its classification to be more accurate.  Instead, we were limited to a built-in sentiment analysis feature in an NLP package.
 
-Needs more
+Also, if we had more complete data on product sales, we could have mined valuable insights into what makes certain products sell more.  We also could have constructed a regression to find how much different features contribute to price.
 
 ## Source of datasets
 We scraped the top rated sunscreens from yesstyle.com, including product information and customer reviews.  
