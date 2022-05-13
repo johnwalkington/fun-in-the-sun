@@ -31,6 +31,7 @@ clearly documented
 supported by analysis
 
 ## Limitations of analysis
+Sentiment analysis is hard to fine-tune, so we encountered errors where our Textblob algorithm could not understand the context of some customer reviews.  For example, customer reviews that had double negatives were falsely flagged as being negative.  If a reviewer were to say something like, "this product does not make me break out with acne," which is a positive review, our Textblob would see the "not" and classify it as negative.  We were able to fix this problem by simplifying our review classes to three levels of sentiment where before we had five, and our classification became more accurate.  However, we are likely missing some nuance in our classification of language.
 
 ## Extensions of analysis/areas for more research
 what would be required to improve the analysis?
