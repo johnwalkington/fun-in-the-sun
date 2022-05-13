@@ -113,6 +113,7 @@ Once these pacakges are installed, the order of running the files is as follows:
 These first two scripts are used to scrape the initial data from YesStyle for product listings and reviews. These scripts are not neccessary to reproduce our analysis as the final dataset is included in the data folder. The Selenium scraper may run into fake user issues and Google Vertex AI issues, YesStyle has a chance to detect the scraper, and reject the scraper's request for data. Because the Google Vertex AI may or may not have a browser, the Selenium Scraper may not open Chrome properly.
 1. Run comment_scraper.py
 2. Run get_comments.py
+
 These scripts are meant to clean the reviews and ingredients for product listings and create our plots
 3. Run skin_wreviews.py
 4. Run skin_analysis.py
