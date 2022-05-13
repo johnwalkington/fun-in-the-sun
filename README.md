@@ -135,13 +135,13 @@ Now that that's out of the way, let's also take a peek at the sunfilter ingredie
 Here is the list of the frequency of ingredients based on the trade name
 
 
-![](filter_freq.png)
+![](Plots/filter_freq.png)
 
 Interestinly enough, Titanium Dioxide and Zinc Oxide are very high on the list. This is curious because both of these ingredients are notorious for thier white casts, we suspect that the product list may be crowded with foundation prouducts with SPF protection. These are typically marketed as 'Tone Up' products. Another explination is that frequently manufacturers will attempt add more cosemetically elegant filters in formulas with Zinc Oxide and Titanium to lessen the white cast, which means that can frequently appear in formulas, but won't cause a large white cast effect. Finally, Zinc Oxide and Titanium Dioxide are known for being senstive skin friendly, which may explain their prevalence.
 
 Next we decided to combine our work with skin types with our work with sunfilter ingredients. We organized reviews by skin type, matching the sun filter ingredients with the skin type of the reviewer using inner join. Below is the resulting table:
 
-![](ingredient_type.png)
+![](Plots/ingredient_type.png)
 
 Surprisingly, there doesn't seem to be much variation between skin types based on ingredients, this might be due to the similarity between formulas!
 
